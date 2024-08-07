@@ -178,9 +178,7 @@ export function WalletStatus() {
             style={{
               backgroundColor: "white",
             }}
-          >
-            fds
-          </Box>
+          ></Box>
           <input
             placeholder="hello, World!"
             value={signPersonalMsg}
@@ -291,6 +289,8 @@ export function WalletStatus() {
                   setDigest(aa?.digest || "");
                 }
               } catch (error) {
+                console.log("🚀 ~ onClick={ ~ error:", error);
+
                 alert(error);
               }
             }}
