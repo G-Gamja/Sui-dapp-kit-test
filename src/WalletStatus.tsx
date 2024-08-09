@@ -156,19 +156,24 @@ export function WalletStatus() {
       >
         <>
           <Button
-            onClick={() => {
+            onClick={async () => {
               try {
-                signPersonalMessage(
-                  {
+                if (account) {
+                  const aa = await currentWallet?.features[
+                    "sui:signPersonalMessage"
+                  ]?.signPersonalMessage({
                     message: new TextEncoder().encode(signPersonalMsg),
-                  },
-                  {
-                    onSuccess: (result) =>
-                      setSignPersonalMessageBytes(result.signature || ""),
-                  },
-                );
+                    account: account,
+                  });
+
+                  setSignPersonalMessageBytes(aa?.signature || "");
+                }
               } catch (error) {
-                alert(error);
+                const message = (error as { message?: string }).message
+                  ? (error as { message: string }).message
+                  : "Failed";
+
+                alert(message);
               }
             }}
           >
@@ -225,7 +230,12 @@ export function WalletStatus() {
                   setSignMessageBytes(aa?.signature || "");
                 }
               } catch (error) {
-                alert(error);
+                const message = (error as { message?: string }).message
+                  ? (error as { message: string }).message
+                  : "Failed";
+
+                console.log("🚀 ~ onClick={ ~ message:", message);
+                alert(message);
               }
             }}
           >
@@ -289,9 +299,11 @@ export function WalletStatus() {
                   setDigest(aa?.digest || "");
                 }
               } catch (error) {
-                console.log("🚀 ~ onClick={ ~ error:", error);
+                const message = (error as { message?: string }).message
+                  ? (error as { message: string }).message
+                  : "Failed";
 
-                alert(error);
+                alert(message);
               }
             }}
           >
@@ -374,7 +386,11 @@ export function WalletStatus() {
                   setDigest2(aa?.digest || "");
                 }
               } catch (error) {
-                alert(error);
+                const message = (error as { message?: string }).message
+                  ? (error as { message: string }).message
+                  : "Failed";
+
+                alert(message);
               }
             }}
           >
@@ -459,7 +475,11 @@ export function WalletStatus() {
                   setSignTxSig(aa?.signature || "");
                 }
               } catch (error) {
-                alert(error);
+                const message = (error as { message?: string }).message
+                  ? (error as { message: string }).message
+                  : "Failed";
+
+                alert(message);
               }
             }}
           >
@@ -541,7 +561,11 @@ export function WalletStatus() {
                   setSignTxBlockSig(aa?.signature || "");
                 }
               } catch (error) {
-                alert(error);
+                const message = (error as { message?: string }).message
+                  ? (error as { message: string }).message
+                  : "Failed";
+
+                alert(message);
               }
             }}
           >
