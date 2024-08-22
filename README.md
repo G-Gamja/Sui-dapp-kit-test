@@ -15,15 +15,15 @@ Client dApp using the following tools:
 ## Starting your dApp
 
 To install dependencies you can run
-
+plz use yarn && node version 20
 ```bash
-pnpm install
+yarn
 ```
 
 To start your dApp in development mode run
 
 ```bash
-pnpm dev
+yarn dev
 ```
 
 ## Building
@@ -31,5 +31,5 @@ pnpm dev
 To build your app for deployment you can run
 
 ```bash
-pnpm build
+yarn build
 ```
